@@ -45,9 +45,14 @@ $("#order-form").on('submit', (evt) => {
 
   // TODO: create an object to store key-value pairs that'll be sent to
   // the server
-
+  const melonForm = {
+    qty: $('#qty-field').val(),
+    melon_type: $('#melon-type-field').val()
+  };
   // TODO: make a request to /order-melons
-  //
+    $.post('/order-melons', melonForm, (response) => {
+      $('#order-status').html(response.msg);
+    })
   // In the callback function, use the response from the server to
   // update #order-status. IMPORTANT: if the result code is 'ERROR',
   // make it show up in red.
